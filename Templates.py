@@ -16,6 +16,35 @@ def parents_or_args(arglist):
 	#so that () will be later filled with
 	return ", ".join(arglist)
 
+def create_class(class_name="SomeClass", parent_classes='object'):
+	pass
+
+def create_def(def_name="some_function" , def_args = ''):
+	pass
+
+
+class Creator(object):
+
+	def __init__(self):
+		#stack of parents and childrens
+		self.stack = []
+
+	def add_to(self, code_object):
+		#adds to the code object at the top of the stack
+		#aka to the current parent
+		pass
+
+	def close_obj(self):
+		#closes aka removes code object from the top of the stack
+		pass
+
+	def write_code(self):
+		#write code object to file
+		#create new file, write, save
+		pass
+
+
+
 print parents_or_args(['object','str'])
 
 s = Template(CLASS_TEMPLATE)

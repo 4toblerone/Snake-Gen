@@ -38,12 +38,16 @@ class Creator(object):
 		#closes aka removes code object from the top of the stack
 		pass
 
-	def write_code(self):
-		#write code object to file
-		#create new file, write, save
+	@staticmethod
+	def write_code(path, file_name):
+		#write code object to file with name = file_name
+		#create new file, write, save to location = path
 		pass
 
-
+	@staticmethod
+	def check_syntax(py_file):
+		#checks if sytax is correct
+		pass
 
 print parents_or_args(['object','str'])
 

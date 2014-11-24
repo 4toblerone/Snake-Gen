@@ -34,8 +34,10 @@ class Creator(object):
 		#aka to the current parent
 		pass
 
-	def close_obj(self):
+	def close_obj(self, withh=PASS):
 		#closes aka removes code object from the top of the stack
+		#it should close it with some other code object
+		#default is python pass statement
 		pass
 
 	@staticmethod

@@ -19,12 +19,13 @@ def parents_or_args(arglist):
 
 def create_class(class_name="SomeClass", parent_classes='object'):
 
-	return Template(CLASS_TEMPLATE).substitute(class_name="NekaKlasa", parent_classes="object")
+	return Template(CLASS_TEMPLATE).substitute(class_name="NekaKlasa",
+											   parent_classes="object")
 	
-
 def create_def(def_name="some_function" , def_args = ''):
 	#pass
-	return Template(DEF_TEMPLATE).substitute(def_name="nekafun", def_args="args")
+	return Template(DEF_TEMPLATE).substitute(def_name="nekafun",
+											 def_args="args")
 
 class Creator(object):
 
@@ -39,8 +40,10 @@ class Creator(object):
 	def add_to(self, code_object):
 		#i should just append code_object to current
 		#code_object
-		#self.stack.append(code_object)
-		self.code+=self.indentation*PY_SPACE+code_object
+		#string concatenation speed!!!
+		#self.code+=self.indentation*PY_SPACE+code_object
+		#faster then using StringIO as StringBuffer in Java
+		self.code="".join([self.code,self.indentation*PY_SPACE,code_object])
 		self.indentation+=1
 		return self
 
@@ -49,18 +52,28 @@ class Creator(object):
 		#make indentation a property?
 		if withh is not None:
 			self.add_to(withh+"\n")
-		self.indentation-=2
+			self.indentation-=2
+		else:
+			self.indentation-=1
 		return self
 
 	@staticmethod
 	def write_code(path, file_name,code):
 		#write code object to file with name = file_name
 		#create new file, write, save to location = path
-		pass
+		#check if syntax is ok before writing to file
+		#think about the path and file_name, do you even need them
+		#separated 
+		#what about windows and linux slashes
+		with open(file_name,'a+') as f:
+			f.write(code)
+		
 
 	@staticmethod
 	def check_syntax(py_file):
-		#checks if sytax is correct
+		#checks if sytax is correct 
+		#not sure how to do it with out pylint
+		#or some other tool
 		pass
 
 class CodeObject(object):
@@ -73,6 +86,7 @@ c.add_to(create_def()).and_close(withh=PASS)
 print c.code
 c.add_to(create_def()).and_close(withh="return").and_close()
 print c.code
+c.write_code(path='',file_name="nekoime.py", code=c.code)
 #print parents_or_args(['object','str'])
 
 #s = Template(CLASS_TEMPLATE)
